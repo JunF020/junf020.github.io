@@ -877,6 +877,30 @@ button:focus-visible {
   margin: 0;
 }
 
+.about-values {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.about-values li {
+  margin-bottom: 0.6rem;
+  color: var(--text-light);
+  font-size: 0.95rem;
+  position: relative;
+  padding-left: 1.2rem;
+  text-align: left;
+}
+
+.about-values li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
 /* Timeline Section */
 .timeline-section {
   margin-top: 5rem;
