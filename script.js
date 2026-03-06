@@ -1019,7 +1019,7 @@
   // ============================================
 
   document.addEventListener("DOMContentLoaded", function () {
-    CookieConsent.init();
+    // CookieConsent.init();
     MobileNav.init();
     HeaderScroll.init();
     HeroSlider.init();

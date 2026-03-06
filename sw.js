@@ -1,6 +1,5 @@
 /**
  * Corban Construction Ltd - Service Worker
- * Production-ready version
  */
 
 const CACHE_VERSION = "v1";
@@ -101,22 +100,14 @@ self.addEventListener("fetch", (event) => {
     );
     return;
   }
-
-  // Everything else: just go to network
 });
 
-/* ======================
-   OPTIONAL: SYNC
-====================== */
 self.addEventListener("sync", (event) => {
   if (event.tag === "contact-form") {
     event.waitUntil(Promise.resolve());
   }
 });
 
-/* ======================
-   OPTIONAL: PUSH
-====================== */
 self.addEventListener("push", (event) => {
   if (!event.data) return;
 
