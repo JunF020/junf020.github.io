@@ -4,6 +4,293 @@
  * Features: Slider, Gallery, Form Validation, Lazy Loading, Accessibility
  */
 
+// Define images array globally (outside the IIFE)
+const galleryImages = [
+  // Construction / In Progress Projects
+  {
+    src: "images/church_structure.jpeg",
+    category: "construction",
+    title: "Church Structure - In Progress",
+  },
+  {
+    src: "images/corban_blding.jpeg",
+    category: "construction",
+    title: "Corban Building Construction",
+  },
+  {
+    src: "images/incomplete_church_structure.jpeg",
+    category: "construction",
+    title: "Church Structure Development",
+  },
+  {
+    src: "images/incomplete_kyu_kilele_tuition_block.jpeg",
+    category: "construction",
+    title: "KYU Kilele Tuition Block - In Progress",
+  },
+  {
+    src: "images/incomplete_rentals.jpeg",
+    category: "construction",
+    title: "Rental Units Under Construction",
+  },
+  {
+    src: "images/incomplete_rentals_sideview.jpeg",
+    category: "construction",
+    title: "Rental Units - Side View",
+  },
+  {
+    src: "images/incomplete_stairway_kyu_kilele_tuition_block.jpeg",
+    category: "construction",
+    title: "KYU Kilele Stairway Construction",
+  },
+  {
+    src: "images/kyu_kilele_tuition_block.jpeg",
+    category: "construction",
+    title: "KYU Kilele Tuition Block",
+  },
+  {
+    src: "images/kyu_kilele_sideview.jpeg",
+    category: "construction",
+    title: "KYU Kilele - Side View",
+  },
+  {
+    src: "images/kyu_kilele_rooftop.jpeg",
+    category: "construction",
+    title: "KYU Kilele Rooftop View",
+  },
+
+  // Completed Projects
+  {
+    src: "images/building_frontview.jpeg",
+    category: "completed",
+    title: "Building Front View - Completed",
+  },
+  {
+    src: "images/building_rooftop.jpeg",
+    category: "completed",
+    title: "Building Rooftop - Modern Architecture",
+  },
+  {
+    src: "images/daystar_chapel_2.jpeg",
+    category: "completed",
+    title: "Daystar Chapel",
+  },
+  {
+    src: "images/daystar_chapel.jpeg",
+    category: "completed",
+    title: "Daystar Chapel - Alternate View",
+  },
+  {
+    src: "images/daystar_hostel.jpeg",
+    category: "completed",
+    title: "Daystar Hostel",
+  },
+  {
+    src: "images/daystar_hostel_project_2.jpeg",
+    category: "completed",
+    title: "Daystar Hostel Project",
+  },
+  {
+    src: "images/daystar.jpeg",
+    category: "completed",
+    title: "Daystar University Project",
+  },
+  {
+    src: "images/kyu_hostels.jpeg",
+    category: "completed",
+    title: "KYU Hostels",
+  },
+  {
+    src: "images/kyu_lecture_theatre.jpeg",
+    category: "completed",
+    title: "KYU Lecture Theatre",
+  },
+  {
+    src: "images/kyu_tuition_complex_1.jpeg",
+    category: "completed",
+    title: "KYU Tuition Complex",
+  },
+  {
+    src: "images/kyu_tuition_complex_2.jpeg",
+    category: "completed",
+    title: "KYU Tuition Complex - Alternate View",
+  },
+  {
+    src: "images/rentals_frontview.jpeg",
+    category: "completed",
+    title: "Completed Rental Units - Front View",
+  },
+  {
+    src: "images/rentals_rooftop_view.jpeg",
+    category: "completed",
+    title: "Rental Units - Rooftop View",
+  },
+
+  // Pavements & Road Construction
+  {
+    src: "images/giz_pavements.jpeg",
+    category: "pavements",
+    title: "GIZ Pavements Project",
+  },
+  {
+    src: "images/pavements_and_structure.jpeg",
+    category: "pavements",
+    title: "Pavements and Structure",
+  },
+  {
+    src: "images/pavements.jpeg",
+    category: "pavements",
+    title: "Pavement Construction",
+  },
+  {
+    src: "images/machakos_perimeter_wall.jpeg",
+    category: "pavements",
+    title: "Machakos Perimeter Wall",
+  },
+  {
+    src: "images/zimmerman_basketball_court.jpeg",
+    category: "pavements",
+    title: "Zimmerman Basketball Court",
+  },
+
+  // Various Projects by Name/Location
+  {
+    src: "images/cyka_project_2.jpeg",
+    category: "projects",
+    title: "CYKA Project",
+  },
+  {
+    src: "images/cyka_project.jpeg",
+    category: "projects",
+    title: "CYKA Project - Construction",
+  },
+  {
+    src: "images/dagoretti_riruta.jpeg",
+    category: "projects",
+    title: "Dagoretti Riruta Project",
+  },
+  {
+    src: "images/elicates.jpeg",
+    category: "projects",
+    title: "Elicates Project",
+  },
+  {
+    src: "images/ilu_project.jpeg",
+    category: "projects",
+    title: "ILU Project",
+  },
+  {
+    src: "images/invergara_project.jpeg",
+    category: "projects",
+    title: "Invergara Project",
+  },
+  {
+    src: "images/kabarak_project.jpeg",
+    category: "projects",
+    title: "Kabarak Project",
+  },
+  {
+    src: "images/karen_project.jpeg",
+    category: "projects",
+    title: "Karen Project",
+  },
+  {
+    src: "images/kdb_project_1.jpeg",
+    category: "projects",
+    title: "KDB Project",
+  },
+  {
+    src: "images/kdb_project.jpeg",
+    category: "projects",
+    title: "KDB Project - Alternate View",
+  },
+  {
+    src: "images/kesal_project.jpeg",
+    category: "projects",
+    title: "KESAL Project",
+  },
+  {
+    src: "images/mariene_project.jpeg",
+    category: "projects",
+    title: "Mariene Project",
+  },
+  {
+    src: "images/meru_project.jpeg",
+    category: "projects",
+    title: "Meru Project",
+  },
+  {
+    src: "images/mombasa_project.jpeg",
+    category: "projects",
+    title: "Mombasa Project",
+  },
+  {
+    src: "images/murang'a_phase_1.jpeg",
+    category: "projects",
+    title: "Murang'a Project - Phase 1",
+  },
+  {
+    src: "images/murang'a_phase_2.jpeg",
+    category: "projects",
+    title: "Murang'a Project - Phase 2",
+  },
+  {
+    src: "images/pgs_project.jpeg",
+    category: "projects",
+    title: "PGS Project",
+  },
+  {
+    src: "images/vendramini_project.jpeg",
+    category: "projects",
+    title: "Vendramini Project",
+  },
+
+  // Medical/Healthcare Projects
+  {
+    src: "images/knh_bunker.jpeg",
+    category: "healthcare",
+    title: "KNH Bunker Project",
+  },
+  {
+    src: "images/knh_eighth_floor.jpeg",
+    category: "healthcare",
+    title: "KNH Eighth Floor",
+  },
+
+  // Wema Blocks (Multiple Buildings)
+  {
+    src: "images/wema_block_1.jpeg",
+    category: "residential",
+    title: "Wema Block 1",
+  },
+  {
+    src: "images/wema_block_2.jpeg",
+    category: "residential",
+    title: "Wema Block 2",
+  },
+  {
+    src: "images/wema_block_3.jpeg",
+    category: "residential",
+    title: "Wema Block 3",
+  },
+  {
+    src: "images/wema_block_5.jpeg",
+    category: "residential",
+    title: "Wema Block 5",
+  },
+
+  // Renovation Projects
+  {
+    src: "images/zimmerman_renovation_1.jpeg",
+    category: "renovation",
+    title: "Zimmerman Renovation Project",
+  },
+  {
+    src: "images/zimmerman_renovation_2.jpeg",
+    category: "renovation",
+    title: "Zimmerman Renovation - Interior",
+  },
+];
+
 (function () {
   "use strict";
 
@@ -56,6 +343,166 @@
       return re.test(String(email).toLowerCase());
     },
   };
+
+  // ============================================
+  // GALLERY CAROUSEL - Moved inside IIFE but before initialization
+  // ============================================
+
+  class GalleryCarousel {
+    constructor(imagesData) {
+      this.images = imagesData;
+      this.carousels = {};
+      this.currentPositions = {};
+      this.init();
+    }
+
+    init() {
+      this.populateCarousels();
+      this.initCarousels();
+      this.initFilters();
+    }
+
+    populateCarousels() {
+      // Group images by category
+      const categories = {
+        all: this.images,
+        construction: this.images.filter(
+          (img) => img.category === "construction",
+        ),
+        completed: this.images.filter((img) => img.category === "completed"),
+        pavements: this.images.filter((img) => img.category === "pavements"),
+        projects: this.images.filter((img) => img.category === "projects"),
+        healthcare: this.images.filter((img) => img.category === "healthcare"),
+        residential: this.images.filter(
+          (img) => img.category === "residential",
+        ),
+        renovation: this.images.filter((img) => img.category === "renovation"),
+      };
+
+      // Populate each carousel
+      for (const [category, images] of Object.entries(categories)) {
+        const track = document.getElementById(`carousel-${category}`);
+        if (track) {
+          track.innerHTML = images
+            .map((img) => this.createGalleryItem(img))
+            .join("");
+        }
+      }
+    }
+
+    createGalleryItem(image) {
+      return `
+        <div class="gallery-item" data-category="${image.category}">
+          <img 
+            src="${image.src}" 
+            alt="${image.title}"
+            loading="lazy"
+          >
+          <div class="gallery-item-info">
+            <h3>${image.title}</h3>
+            <p>${image.description || ""}</p>
+            <span class="gallery-item-category">${image.category}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    initCarousels() {
+      // Initialize carousels for each category
+      document.querySelectorAll(".gallery-category").forEach((category) => {
+        const categoryName = category.dataset.category;
+        const track = category.querySelector(".carousel-track");
+        const prevBtn = category.querySelector(".carousel-prev");
+        const nextBtn = category.querySelector(".carousel-next");
+
+        if (track && prevBtn && nextBtn) {
+          this.carousels[categoryName] = {
+            track,
+            prevBtn,
+            nextBtn,
+            currentPosition: 0,
+          };
+
+          this.setupCarouselControls(categoryName);
+        }
+      });
+    }
+
+    setupCarouselControls(categoryName) {
+      const carousel = this.carousels[categoryName];
+      const track = carousel.track;
+      const prevBtn = carousel.prevBtn;
+      const nextBtn = carousel.nextBtn;
+
+      // Calculate item width including gap
+      const updateCarouselDimensions = () => {
+        const itemWidth =
+          track.querySelector(".gallery-item")?.offsetWidth || 0;
+        const gap = 24; // 1.5rem gap
+        const itemsPerView = Math.floor(
+          track.parentElement.offsetWidth / (itemWidth + gap),
+        );
+        return { itemWidth, gap, itemsPerView };
+      };
+
+      const updateButtons = () => {
+        const { itemWidth, gap, itemsPerView } = updateCarouselDimensions();
+        const totalItems = track.children.length;
+        const maxPosition = Math.max(0, totalItems - itemsPerView);
+
+        prevBtn.disabled = carousel.currentPosition <= 0;
+        nextBtn.disabled = carousel.currentPosition >= maxPosition;
+      };
+
+      const moveCarousel = (direction) => {
+        const { itemWidth, gap, itemsPerView } = updateCarouselDimensions();
+        const totalItems = track.children.length;
+        const maxPosition = Math.max(0, totalItems - itemsPerView);
+
+        const newPosition = carousel.currentPosition + direction;
+        if (newPosition >= 0 && newPosition <= maxPosition) {
+          carousel.currentPosition = newPosition;
+          const translateX = -(newPosition * (itemWidth + gap));
+          track.style.transform = `translateX(${translateX}px)`;
+          updateButtons();
+        }
+      };
+
+      // Event listeners
+      prevBtn.addEventListener("click", () => moveCarousel(-1));
+      nextBtn.addEventListener("click", () => moveCarousel(1));
+
+      // Update on window resize
+      window.addEventListener("resize", () => {
+        updateButtons();
+      });
+
+      // Initialize
+      setTimeout(updateButtons, 100); // Small delay to ensure DOM is ready
+    }
+
+    initFilters() {
+      const filterButtons = document.querySelectorAll(".gallery-filter");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          // Update active button
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+
+          // Show selected category
+          const filterValue = button.dataset.filter;
+          document.querySelectorAll(".gallery-category").forEach((category) => {
+            if (category.dataset.category === filterValue) {
+              category.classList.add("active");
+            } else {
+              category.classList.remove("active");
+            }
+          });
+        });
+      });
+    }
+  }
 
   // ============================================
   // COOKIE CONSENT
@@ -561,13 +1008,13 @@
     openProjectModal: function (project) {
       // Simple alert for now - can be replaced with a proper modal
       alert(
-        `${project.title}\\n\\n${project.description}\\nLocation: ${project.location}`,
+        `${project.title}\n\n${project.description}\nLocation: ${project.location}`,
       );
     },
   };
 
   // ============================================
-  // GALLERY
+  // GALLERY (Original - Keeping for backward compatibility)
   // ============================================
 
   const Gallery = {
@@ -577,51 +1024,10 @@
 
       if (!this.galleryGrid) return;
 
-      this.images = [
-        {
-          src: "images/church_structure.jpeg",
-          category: "construction",
-          title: "Construction Site",
-        },
-        {
-          src: "images/corban_blding.jpeg",
-          category: "construction",
-          title: "Building Progress",
-        },
-        {
-          src: "images/building_frontview.jpeg",
-          category: "completed",
-          title: "Completed Building",
-        },
-        {
-          src: "images/building_rooftop.jpeg",
-          category: "completed",
-          title: "Modern Architecture",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1578858653051-f6a21f0f41bb?w=800&q=80",
-          category: "equipment",
-          title: "Heavy Machinery",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1590644365607-1c5a38fc43e0?w=800&q=80",
-          category: "equipment",
-          title: "Road Equipment",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
-          category: "team",
-          title: "Our Team",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-          category: "team",
-          title: "Site Meeting",
-        },
-      ];
+      this.images = galleryImages; // Use the global images array
 
-      this.renderGallery("all");
       this.bindEvents();
+      this.renderGallery("all");
     },
 
     bindEvents: function () {
@@ -733,7 +1139,9 @@
       this.formStatus = document.getElementById("formStatus");
 
       // Initialize EmailJS with your public key
-      emailjs.init("wGPJFbSvWICyNpjkZ");
+      if (typeof emailjs !== "undefined") {
+        emailjs.init("wGPJFbSvWICyNpjkZ");
+      }
 
       this.bindEvents();
     },
@@ -853,20 +1261,27 @@
         };
 
         // Send email using EmailJS
-        const response = await emailjs.send(
-          "service_upxsof8",
-          "template_zn7v6d5",
-          templateParams,
-        );
+        if (typeof emailjs !== "undefined") {
+          const response = await emailjs.send(
+            "service_upxsof8",
+            "template_zn7v6d5",
+            templateParams,
+          );
 
-        if (response.status === 200) {
+          if (response.status === 200) {
+            this.showSuccess();
+            this.form.reset();
+          } else {
+            throw new Error("Failed to send email");
+          }
+        } else {
+          // Fallback if EmailJS is not loaded
+          console.log("EmailJS not loaded - simulating success");
           this.showSuccess();
           this.form.reset();
-        } else {
-          throw new Error("Failed to send email");
         }
       } catch (error) {
-        console.error("EmailJS Error:", error);
+        console.error("Email Error:", error);
         this.showError();
       } finally {
         this.submitBtn.classList.remove("loading");
@@ -1041,13 +1456,27 @@
   // ============================================
 
   document.addEventListener("DOMContentLoaded", function () {
-    // CookieConsent.init();
+    // Initialize GalleryCarousel with the global images array
+    if (document.querySelector(".gallery-carousels")) {
+      new GalleryCarousel(galleryImages);
+    }
+
+    // Initialize other modules
+    // CookieConsent.init(); // Commented out as per original
     MobileNav.init();
     HeaderScroll.init();
     HeroSlider.init();
     StatsCounter.init();
     ProjectsFilter.init();
-    Gallery.init();
+
+    // Only initialize original Gallery if the gallery grid exists and carousel doesn't
+    if (
+      document.getElementById("galleryGrid") &&
+      !document.querySelector(".gallery-carousels")
+    ) {
+      Gallery.init();
+    }
+
     JobsListing.init();
     ContactForm.init();
     BackToTop.init();

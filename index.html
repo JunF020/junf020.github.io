@@ -393,9 +393,9 @@
           <ul class="nav-list" id="navList">
             <li><a href="#home" class="active" aria-current="page">Home</a></li>
             <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#services">Services</a></li>
             <li><a href="#careers">Careers</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -650,7 +650,7 @@
                   <h4>Regional Expansion</h4>
                   <p>
                     Successfully completed first international project in
-                    Uganda, marking our regional expansion.
+                    Mombasa, marking our regional expansion.
                   </p>
                 </div>
               </div>
@@ -670,7 +670,7 @@
                   <h4>Ongoing Projects</h4>
                   <p>
                         Kirinyaga University Institution in Progress
-                        Tuition Block Complex 1
+                        Tuition Block Complex (II)
                   </p>
                 </div>
               </div>
@@ -811,6 +811,8 @@
           </div>
         </div>
 
+      </section>
+
       <!-- Projects Section -->
       <section
         id="projects"
@@ -877,40 +879,177 @@
       </section>
 
       <!-- Gallery Section -->
-      <section
-        id="gallery"
-        class="gallery-section"
-        aria-labelledby="gallery-heading"
-      >
-        <div class="container">
-          <div class="section-header">
-            <h2 id="gallery-heading" class="section-title">Project Gallery</h2>
-            <p class="section-subtitle">Explore Our Work in Detail</p>
+    <section
+      id="gallery"
+      class="gallery-section"
+      aria-labelledby="gallery-heading"
+    >
+      <div class="container">
+        <div class="section-header">
+          <h2 id="gallery-heading" class="section-title">Project Gallery</h2>
+          <p class="section-subtitle">Explore Our Work in Detail</p>
+        </div>
+
+        <div
+          class="gallery-filters"
+          role="group"
+          aria-label="Gallery filters"
+        >
+          <button class="gallery-filter active" data-filter="all">All</button>
+          <button class="gallery-filter" data-filter="construction">
+            Construction Progress
+          </button>
+          <button class="gallery-filter" data-filter="completed">
+            Completed Projects
+          </button>
+          <button class="gallery-filter" data-filter="pavements">
+            Pavements & Roads
+          </button>
+          <button class="gallery-filter" data-filter="projects">
+            Featured Projects
+          </button>
+          <button class="gallery-filter" data-filter="healthcare">
+            Healthcare
+          </button>
+          <button class="gallery-filter" data-filter="residential">
+            Residential
+          </button>
+          <button class="gallery-filter" data-filter="renovation">
+            Renovation
+          </button>
+        </div>
+
+        <!-- Gallery Carousels Container -->
+        <div class="gallery-carousels" id="galleryCarousels">
+          <!-- All Categories Carousel -->
+          <div class="gallery-category active" data-category="all">
+            <div class="carousel-container">
+              <button class="carousel-nav carousel-prev" aria-label="Previous images">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <div class="carousel-track-container">
+                <div class="carousel-track" id="carousel-all"></div>
+              </div>
+              <button class="carousel-nav carousel-next" aria-label="Next images">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
           </div>
 
-          <div
-            class="gallery-filters"
-            role="group"
-            aria-label="Gallery filters"
-          >
-            <button class="gallery-filter active" data-filter="all">All</button>
-            <button class="gallery-filter" data-filter="construction">
-              Construction Progress
-            </button>
-            <button class="gallery-filter" data-filter="completed">
-              Completed Projects
-            </button>
-            <button class="gallery-filter" data-filter="equipment">
-              Equipment
-            </button>
-            <button class="gallery-filter" data-filter="team">Our Team</button>
+          <!-- Construction Carousel -->
+          <div class="gallery-category" data-category="construction">
+            <h3 class="category-title">Construction Progress</h3>
+            <div class="carousel-container">
+              <button class="carousel-nav carousel-prev" aria-label="Previous images">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <div class="carousel-track-container">
+                <div class="carousel-track" id="carousel-construction"></div>
+              </div>
+              <button class="carousel-nav carousel-next" aria-label="Next images">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
           </div>
 
-          <div class="gallery-grid" id="galleryGrid">
-            <!-- Gallery items will be dynamically inserted here -->
+          <!-- Completed Projects Carousel -->
+          <div class="gallery-category" data-category="completed">
+            <h3 class="category-title">Completed Projects</h3>
+            <div class="carousel-container">
+              <button class="carousel-nav carousel-prev" aria-label="Previous images">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <div class="carousel-track-container">
+                <div class="carousel-track" id="carousel-completed"></div>
+              </div>
+              <button class="carousel-nav carousel-next" aria-label="Next images">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Pavements Carousel -->
+          <div class="gallery-category" data-category="pavements">
+            <h3 class="category-title">Pavements & Roads</h3>
+            <div class="carousel-container">
+              <button class="carousel-nav carousel-prev" aria-label="Previous images">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <div class="carousel-track-container">
+                <div class="carousel-track" id="carousel-pavements"></div>
+              </div>
+              <button class="carousel-nav carousel-next" aria-label="Next images">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Featured Projects Carousel -->
+          <div class="gallery-category" data-category="projects">
+            <h3 class="category-title">Featured Projects</h3>
+            <div class="carousel-container">
+              <button class="carousel-nav carousel-prev" aria-label="Previous images">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <div class="carousel-track-container">
+                <div class="carousel-track" id="carousel-projects"></div>
+              </div>
+              <button class="carousel-nav carousel-next" aria-label="Next images">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Healthcare Carousel -->
+          <div class="gallery-category" data-category="healthcare">
+            <h3 class="category-title">Healthcare Projects</h3>
+            <div class="carousel-container">
+              <button class="carousel-nav carousel-prev" aria-label="Previous images">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <div class="carousel-track-container">
+                <div class="carousel-track" id="carousel-healthcare"></div>
+              </div>
+              <button class="carousel-nav carousel-next" aria-label="Next images">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Residential Carousel -->
+          <div class="gallery-category" data-category="residential">
+            <h3 class="category-title">Residential Projects</h3>
+            <div class="carousel-container">
+              <button class="carousel-nav carousel-prev" aria-label="Previous images">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <div class="carousel-track-container">
+                <div class="carousel-track" id="carousel-residential"></div>
+              </div>
+              <button class="carousel-nav carousel-next" aria-label="Next images">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Renovation Carousel -->
+          <div class="gallery-category" data-category="renovation">
+            <h3 class="category-title">Renovation Projects</h3>
+            <div class="carousel-container">
+              <button class="carousel-nav carousel-prev" aria-label="Previous images">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <div class="carousel-track-container">
+                <div class="carousel-track" id="carousel-renovation"></div>
+              </div>
+              <button class="carousel-nav carousel-next" aria-label="Next images">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
 
       <!-- Careers Section -->
@@ -1259,7 +1398,6 @@
             </iframe>
           </div>
         </div>
-      </section>
     </main>
 
     <!-- Footer -->
@@ -1408,6 +1546,8 @@
         const yearsExperience = currentYear - foundedYear;
         expElement.dataset.count = yearsExperience;
       });
+
+
 
     </script>
   </body>
