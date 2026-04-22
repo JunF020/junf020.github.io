@@ -1496,15 +1496,60 @@
         });
       }
 
+
+        // ============================================
+        // SCROLL SPY - Active nav link on scroll
+        // ============================================
+        const ScrollSpy = {
+          init: function () {
+            this.sections = document.querySelectorAll("main section[id]");
+            this.navLinks = document.querySelectorAll(".nav-list a[href^='#']");
+        
+            if (!this.sections.length || !this.navLinks.length) return;
+        
+            window.addEventListener(
+              "scroll",
+              utils.throttle(() => this.update(), 100)
+            );
+        
+            // Run once on load to set initial state
+            this.update();
+          },
+        
+          update: function () {
+            const scrollY = window.scrollY;
+            const headerOffset = 100; // A little buffer below the fixed header
+        
+            let currentSection = "";
+        
+            this.sections.forEach((section) => {
+              const sectionTop = section.offsetTop - headerOffset;
+              const sectionBottom = sectionTop + section.offsetHeight;
+        
+              if (scrollY >= sectionTop && scrollY < sectionBottom) {
+                currentSection = section.getAttribute("id");
+              }
+            });
+        
+            this.navLinks.forEach((link) => {
+              link.classList.remove("active");
+              if (link.getAttribute("href") === `#${currentSection}`) {
+                link.classList.add("active");
+              }
+            });
+          },
+        };
+
       document.addEventListener("DOMContentLoaded", () => {
         const expElement = document.getElementById("yearsExperience");
         const foundedYear = parseInt(expElement.dataset.founded);
         const currentYear = new Date().getFullYear();
         const yearsExperience = currentYear - foundedYear;
         expElement.dataset.count = yearsExperience;
+        ScrollSpy.init();
       });
 
-
+        
 
     </script>
   </body>

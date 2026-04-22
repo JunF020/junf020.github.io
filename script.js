@@ -1452,6 +1452,43 @@ const galleryImages = [
   };
 
   // ============================================
+  // SCROLL SPY - Active nav link on scroll
+  // ============================================
+  const ScrollSpy = {
+    init: function () {
+      this.sections = document.querySelectorAll("main section[id]");
+      this.navLinks = document.querySelectorAll(".nav-list a[href^='#']");
+
+      if (!this.sections.length || !this.navLinks.length) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute("id");
+              this.setActiveLink(id);
+            }
+          });
+        },
+        {
+          rootMargin: "-30% 0px -70% 0px", // Trigger when section is near top of viewport
+          threshold: 0,
+        },
+      );
+
+      this.sections.forEach((section) => observer.observe(section));
+      this.setActiveLink(this.sections[0]?.getAttribute("id"));
+    },
+
+    setActiveLink: function (id) {
+      this.navLinks.forEach((link) => {
+        const href = link.getAttribute("href").substring(1);
+        link.classList.toggle("active", href === id);
+      });
+    },
+  };
+
+  // ============================================
   // INITIALIZE ALL MODULES
   // ============================================
 
@@ -1468,6 +1505,7 @@ const galleryImages = [
     HeroSlider.init();
     StatsCounter.init();
     ProjectsFilter.init();
+    ScrollSpy.init();
 
     // Only initialize original Gallery if the gallery grid exists and carousel doesn't
     if (
