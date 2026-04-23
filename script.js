@@ -291,6 +291,93 @@ const galleryImages = [
   },
 ];
 
+// Enhanced Carousel with touch/drag scrolling
+const EnhancedCarousel = {
+  init: function () {
+    this.carousels = document.querySelectorAll(".carousel-container");
+    if (!this.carousels.length) return;
+
+    this.carousels.forEach((carousel) => {
+      const trackContainer = carousel.querySelector(
+        ".carousel-track-container",
+      );
+      const track = carousel.querySelector(".carousel-track");
+      const prevBtn = carousel.querySelector(".carousel-prev");
+      const nextBtn = carousel.querySelector(".carousel-next");
+
+      if (!trackContainer || !track) return;
+
+      // Store scroll position for drag functionality
+      let isDragging = false;
+      let startX = 0;
+      let scrollLeft = 0;
+
+      // Enable drag-to-scroll (mouse)
+      trackContainer.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        startX = e.pageX - trackContainer.offsetLeft;
+        scrollLeft = trackContainer.scrollLeft;
+        trackContainer.style.cursor = "grabbing";
+        trackContainer.style.userSelect = "none";
+      });
+
+      trackContainer.addEventListener("mouseleave", () => {
+        isDragging = false;
+        trackContainer.style.cursor = "grab";
+        trackContainer.style.userSelect = "";
+      });
+
+      trackContainer.addEventListener("mouseup", () => {
+        isDragging = false;
+        trackContainer.style.cursor = "grab";
+        trackContainer.style.userSelect = "";
+      });
+
+      trackContainer.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - trackContainer.offsetLeft;
+        const walk = (x - startX) * 1.5; // Scroll speed multiplier
+        trackContainer.scrollLeft = scrollLeft - walk;
+      });
+
+      // Touch events for mobile
+      trackContainer.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].pageX - trackContainer.offsetLeft;
+        scrollLeft = trackContainer.scrollLeft;
+      });
+
+      trackContainer.addEventListener("touchmove", (e) => {
+        const x = e.touches[0].pageX - trackContainer.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        trackContainer.scrollLeft = scrollLeft - walk;
+      });
+
+      // Button navigation (existing functionality)
+      if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+          trackContainer.scrollBy({
+            left: -300,
+            behavior: "smooth",
+          });
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+          trackContainer.scrollBy({
+            left: 300,
+            behavior: "smooth",
+          });
+        });
+      }
+
+      // Set cursor style
+      trackContainer.style.cursor = "grab";
+    });
+  },
+};
+
 (function () {
   "use strict";
 
@@ -898,10 +985,10 @@ const galleryImages = [
         },
         {
           id: 5,
-          title: "Daystar Chapel",
+          title: "Machakos Perimeter Wall",
           category: "completed",
           location: "Nairobi, Kenya",
-          image: "images/daystar_chapel_2.jpeg",
+          image: "images/machakos_perimeter_wall.jpeg",
           description: "Incomplete modern chapel building",
         },
         {
@@ -1083,46 +1170,18 @@ const galleryImages = [
       this.jobsList = document.getElementById("jobsList");
       if (!this.jobsList) return;
 
-      this.jobs = [
-        {
-          title: "Senior Civil Engineer",
-          location: "Nairobi, Kenya",
-          type: "Full-time",
-        },
-        {
-          title: "Project Manager",
-          location: "Mombasa, Kenya",
-          type: "Full-time",
-        },
-        {
-          title: "Construction Supervisor",
-          location: "Kisumu, Kenya",
-          type: "Contract",
-        },
-        {
-          title: "Quantity Surveyor",
-          location: "Nairobi, Kenya",
-          type: "Full-time",
-        },
-      ];
-
-      this.renderJobs();
+      this.renderNotHiringMessage();
     },
 
-    renderJobs: function () {
-      this.jobsList.innerHTML = this.jobs
-        .map(
-          (job) => `
-                <div class="job-item" role="listitem">
-                    <h4 class="job-title">${job.title}</h4>
-                    <p class="job-location">
-                        <i class="fas fa-map-marker-alt"></i> ${job.location}
-                    </p>
-                    <span class="job-type">${job.type}</span>
-                </div>
-            `,
-        )
-        .join("");
+    renderNotHiringMessage: function () {
+      this.jobsList.innerHTML = `
+      <div class="job-item" style="text-align: center; padding: 2rem 1rem;">
+        <i class="fas fa-info-circle" aria-hidden="true" style="font-size: 2rem; color: #c49a6c; margin-bottom: 1rem;"></i>
+        <h4 style="margin-bottom: 0.75rem;">No Current Openings</h4>
+        <p style="margin-bottom: 0.5rem;">We are not actively hiring at this time.</p>
+        <p style="font-size: 0.9rem; opacity: 0.8;">New opportunities will be announced here as they become available. We encourage you to check back periodically.</p>
+      </div>
+    `;
     },
   };
 
@@ -1250,22 +1309,30 @@ const galleryImages = [
       this.submitBtn.disabled = true;
 
       try {
-        // Prepare template parameters
+        // Get form values
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const phone = document.getElementById("phone").value || "Not provided";
+        const subject = document.getElementById("subject").value;
+        const message = document.getElementById("message").value;
+
+        // Prepare template parameters for EmailJS
         const templateParams = {
-          from_name: document.getElementById("name").value,
-          from_email: document.getElementById("email").value,
-          from_phone: document.getElementById("phone").value || "Not provided",
-          subject: document.getElementById("subject").value,
-          message: document.getElementById("message").value,
-          to_email: "mashaephantus2000@gmail.com",
+          from_name: name,
+          from_email: email,
+          from_phone: phone,
+          subject: subject,
+          message: message,
+          to_email: "mashaephantus2000@gmail.com", // This will be your receiving email
         };
 
         // Send email using EmailJS
         if (typeof emailjs !== "undefined") {
           const response = await emailjs.send(
-            "service_upxsof8",
-            "template_zn7v6d5",
-            templateParams,
+            "service_5fhn7ux", // Your Service ID
+            "template_z6743bk", // Your Template ID
+            templateParams, // Your template parameters
+            "cLC-Mj45uWHI1q-WC", // Your Public Key (optional if already initialized)
           );
 
           if (response.status === 200) {
@@ -1276,9 +1343,8 @@ const galleryImages = [
           }
         } else {
           // Fallback if EmailJS is not loaded
-          console.log("EmailJS not loaded - simulating success");
-          this.showSuccess();
-          this.form.reset();
+          console.log("EmailJS not loaded - check your internet connection");
+          this.showError();
         }
       } catch (error) {
         console.error("Email Error:", error);
@@ -1300,7 +1366,7 @@ const galleryImages = [
 
     showError: function () {
       this.formStatus.textContent =
-        "Sorry, there was an error sending your message. Please try again later.";
+        "Sorry, there was an error sending your message. Please try again later or contact us directly via phone.";
       this.formStatus.className = "form-status error";
     },
   };

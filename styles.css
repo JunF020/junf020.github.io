@@ -2368,6 +2368,80 @@ button:focus-visible {
   color: var(--gray-color);
 }
 
+/* Make carousel track touch-scrollable */
+.carousel-track-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  scrollbar-width: thin; /* For Firefox - shows scrollbar */
+  scrollbar-color: var(--primary-color) #e0e0e0; /* Thumb and track colors */
+}
+
+/* Style the scrollbar for Chrome/Safari/Edge */
+.carousel-track-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel-track-container::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  border-radius: 10px;
+}
+
+.carousel-track-container::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 10px;
+}
+
+.carousel-track-container::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Hide the default track display (keep carousel-track as flex) */
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+/* Optional: Add visual hint that it's scrollable */
+.carousel-track-container::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 40px;
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.05));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.carousel-track-container:hover::after {
+  opacity: 1;
+}
+
+.btn-submit.loading .btn-text {
+  visibility: hidden;
+}
+
+.btn-submit.loading .btn-loader {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .carousel-track .gallery-item {
@@ -2398,5 +2472,33 @@ button:focus-visible {
   .carousel-nav {
     width: 30px;
     height: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-filters,
+  .gallery-filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    padding-left: 1rem; /* Adds space on the left edge */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    justify-content: flex-start;
+    gap: 0.75rem; /* Slightly smaller gap on mobile */
+  }
+
+  /* Optional: Add space after the last button too */
+  .project-filters::after,
+  .gallery-filters::after {
+    content: "";
+    display: block;
+    min-width: 1rem; /* Adds breathing room at the end */
+    height: 1px;
+  }
+
+  .project-filters::-webkit-scrollbar,
+  .gallery-filters::-webkit-scrollbar {
+    display: none;
   }
 }

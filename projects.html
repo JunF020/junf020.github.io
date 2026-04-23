@@ -18,13 +18,17 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css"
+    />
     <link rel="stylesheet" href="styles.css" />
     <style>
       .project-detail-hero {
         height: 60vh;
         background:
-          linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-          url("https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&q=80");
+          linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("images/ilu_main_complex.jpeg");
         background-size: cover;
         background-position: center;
         display: flex;
@@ -69,6 +73,22 @@
         margin: 3rem 0;
       }
 
+      .project-gallery img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 8px;
+        cursor: pointer;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .project-gallery img:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
       .breadcrumb {
         padding: 1rem 0;
         background: var(--light-color);
@@ -84,6 +104,7 @@
 
       .breadcrumb a {
         color: var(--text-light);
+        text-decoration: none;
       }
 
       .breadcrumb a:hover {
@@ -94,6 +115,29 @@
         content: "/";
         margin-left: 0.5rem;
         color: var(--text-light);
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .btn-secondary {
+        display: inline-block;
+        padding: 0.8rem 1.8rem;
+        background: var(--secondary-color);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+      }
+
+      .btn-secondary:hover {
+        background: var(--primary-color);
+        transform: translateX(-5px);
+      }
+
+      .btn-secondary i {
+        margin-right: 8px;
       }
     </style>
   </head>
@@ -178,40 +222,11 @@
         </p>
 
         <h2>Project Gallery</h2>
-        <div class="project-gallery">
-          <a
-            href="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80"
-            data-lightbox="project"
-            data-title="Construction Progress"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80"
-              alt="Construction Progress"
-              loading="lazy"
-            />
-          </a>
-          <a
-            href="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80"
-            data-lightbox="project"
-            data-title="Site Overview"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80"
-              alt="Site Overview"
-              loading="lazy"
-            />
-          </a>
-          <a
-            href="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80"
-            data-lightbox="project"
-            data-title="Building Design"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80"
-              alt="Building Design"
-              loading="lazy"
-            />
-          </a>
+        <div class="project-gallery" id="projectGallery">
+          <!-- Images will be dynamically inserted here -->
+          <div style="text-align: center; padding: 2rem">
+            Loading gallery...
+          </div>
         </div>
 
         <div class="text-center" style="margin-top: 3rem">
@@ -232,6 +247,344 @@
       </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
+    <script>
+      // Define images array (same as your gallery)
+      const galleryImages = [
+        // Construction / In Progress Projects
+        {
+          src: "images/church_structure.jpeg",
+          category: "construction",
+          title: "Church Structure - In Progress",
+        },
+        {
+          src: "images/corban_blding.jpeg",
+          category: "construction",
+          title: "Corban Building Construction",
+        },
+        {
+          src: "images/incomplete_church_structure.jpeg",
+          category: "construction",
+          title: "Church Structure Development",
+        },
+        {
+          src: "images/incomplete_kyu_kilele_tuition_block.jpeg",
+          category: "construction",
+          title: "KYU Kilele Tuition Block - In Progress",
+        },
+        {
+          src: "images/incomplete_rentals.jpeg",
+          category: "construction",
+          title: "Rental Units Under Construction",
+        },
+        {
+          src: "images/incomplete_rentals_sideview.jpeg",
+          category: "construction",
+          title: "Rental Units - Side View",
+        },
+        {
+          src: "images/incomplete_stairway_kyu_kilele_tuition_block.jpeg",
+          category: "construction",
+          title: "KYU Kilele Stairway Construction",
+        },
+        {
+          src: "images/kyu_kilele_tuition_block.jpeg",
+          category: "construction",
+          title: "KYU Kilele Tuition Block",
+        },
+        {
+          src: "images/kyu_kilele_sideview.jpeg",
+          category: "construction",
+          title: "KYU Kilele - Side View",
+        },
+        {
+          src: "images/kyu_kilele_rooftop.jpeg",
+          category: "construction",
+          title: "KYU Kilele Rooftop View",
+        },
+        // Completed Projects
+        {
+          src: "images/building_frontview.jpeg",
+          category: "completed",
+          title: "Building Front View - Completed",
+        },
+        {
+          src: "images/building_rooftop.jpeg",
+          category: "completed",
+          title: "Building Rooftop - Modern Architecture",
+        },
+        {
+          src: "images/daystar_chapel_2.jpeg",
+          category: "completed",
+          title: "Daystar Chapel",
+        },
+        {
+          src: "images/daystar_chapel.jpeg",
+          category: "completed",
+          title: "Daystar Chapel - Alternate View",
+        },
+        {
+          src: "images/daystar_hostel.jpeg",
+          category: "completed",
+          title: "Daystar Hostel",
+        },
+        {
+          src: "images/daystar_hostel_project_2.jpeg",
+          category: "completed",
+          title: "Daystar Hostel Project",
+        },
+        {
+          src: "images/daystar.jpeg",
+          category: "completed",
+          title: "Daystar University Project",
+        },
+        {
+          src: "images/kyu_hostels.jpeg",
+          category: "completed",
+          title: "KYU Hostels",
+        },
+        {
+          src: "images/kyu_lecture_theatre.jpeg",
+          category: "completed",
+          title: "KYU Lecture Theatre",
+        },
+        {
+          src: "images/kyu_tuition_complex_1.jpeg",
+          category: "completed",
+          title: "KYU Tuition Complex",
+        },
+        {
+          src: "images/kyu_tuition_complex_2.jpeg",
+          category: "completed",
+          title: "KYU Tuition Complex - Alternate View",
+        },
+        {
+          src: "images/rentals_frontview.jpeg",
+          category: "completed",
+          title: "Completed Rental Units - Front View",
+        },
+        {
+          src: "images/rentals_rooftop_view.jpeg",
+          category: "completed",
+          title: "Rental Units - Rooftop View",
+        },
+        // Pavements & Road Construction
+        {
+          src: "images/giz_pavements.jpeg",
+          category: "pavements",
+          title: "GIZ Pavements Project",
+        },
+        {
+          src: "images/pavements_and_structure.jpeg",
+          category: "pavements",
+          title: "Pavements and Structure",
+        },
+        {
+          src: "images/pavements.jpeg",
+          category: "pavements",
+          title: "Pavement Construction",
+        },
+        {
+          src: "images/machakos_perimeter_wall.jpeg",
+          category: "pavements",
+          title: "Machakos Perimeter Wall",
+        },
+        {
+          src: "images/zimmerman_basketball_court.jpeg",
+          category: "pavements",
+          title: "Zimmerman Basketball Court",
+        },
+        // Various Projects
+        {
+          src: "images/cyka_project_2.jpeg",
+          category: "projects",
+          title: "CYKA Project",
+        },
+        {
+          src: "images/cyka_project.jpeg",
+          category: "projects",
+          title: "CYKA Project - Construction",
+        },
+        {
+          src: "images/dagoretti_riruta.jpeg",
+          category: "projects",
+          title: "Dagoretti Riruta Project",
+        },
+        {
+          src: "images/elicates.jpeg",
+          category: "projects",
+          title: "Elicates Project",
+        },
+        {
+          src: "images/ilu_project.jpeg",
+          category: "projects",
+          title: "ILU Project",
+        },
+        {
+          src: "images/invergara_project.jpeg",
+          category: "projects",
+          title: "Invergara Project",
+        },
+        {
+          src: "images/kabarak_project.jpeg",
+          category: "projects",
+          title: "Kabarak Project",
+        },
+        {
+          src: "images/karen_project.jpeg",
+          category: "projects",
+          title: "Karen Project",
+        },
+        {
+          src: "images/kdb_project_1.jpeg",
+          category: "projects",
+          title: "KDB Project",
+        },
+        {
+          src: "images/kdb_project.jpeg",
+          category: "projects",
+          title: "KDB Project - Alternate View",
+        },
+        {
+          src: "images/kesal_project.jpeg",
+          category: "projects",
+          title: "KESAL Project",
+        },
+        {
+          src: "images/mariene_project.jpeg",
+          category: "projects",
+          title: "Mariene Project",
+        },
+        {
+          src: "images/meru_project.jpeg",
+          category: "projects",
+          title: "Meru Project",
+        },
+        {
+          src: "images/mombasa_project.jpeg",
+          category: "projects",
+          title: "Mombasa Project",
+        },
+        {
+          src: "images/muranga_phase_1.jpeg",
+          category: "projects",
+          title: "Murang'a Project - Phase 1",
+        },
+        {
+          src: "images/muranga_phase_2.jpeg",
+          category: "projects",
+          title: "Murang'a Project - Phase 2",
+        },
+        {
+          src: "images/pgs_project.jpeg",
+          category: "projects",
+          title: "PGS Project",
+        },
+        {
+          src: "images/vendramini_project.jpeg",
+          category: "projects",
+          title: "Vendramini Project",
+        },
+        // Healthcare Projects
+        {
+          src: "images/knh_bunker.jpeg",
+          category: "healthcare",
+          title: "KNH Bunker Project",
+        },
+        {
+          src: "images/knh_eighth_floor.jpeg",
+          category: "healthcare",
+          title: "KNH Eighth Floor",
+        },
+        // Residential
+        {
+          src: "images/wema_block_1.jpeg",
+          category: "residential",
+          title: "Wema Block 1",
+        },
+        {
+          src: "images/wema_block_2.jpeg",
+          category: "residential",
+          title: "Wema Block 2",
+        },
+        {
+          src: "images/wema_block_3.jpeg",
+          category: "residential",
+          title: "Wema Block 3",
+        },
+        {
+          src: "images/wema_block_5.jpeg",
+          category: "residential",
+          title: "Wema Block 5",
+        },
+        // Renovation
+        {
+          src: "images/zimmerman_renovation_1.jpeg",
+          category: "renovation",
+          title: "Zimmerman Renovation Project",
+        },
+        {
+          src: "images/zimmerman_renovation_2.jpeg",
+          category: "renovation",
+          title: "Zimmerman Renovation - Interior",
+        },
+      ];
+
+      // Filter only construction/completed projects for this page
+      const relevantImages = galleryImages.filter(
+        (img) =>
+          img.category === "construction" || img.category === "completed",
+      );
+
+      // Populate the gallery
+      function populateProjectGallery() {
+        const galleryContainer = document.getElementById("projectGallery");
+        if (!galleryContainer) return;
+
+        if (relevantImages.length === 0) {
+          galleryContainer.innerHTML =
+            '<p style="text-align: center;">No images available for this project.</p>';
+          return;
+        }
+
+        // Take first 6-8 images for this specific project
+        const imagesToShow = relevantImages.slice(0, 8);
+
+        galleryContainer.innerHTML = imagesToShow
+          .map(
+            (img) => `
+          <a 
+            href="${img.src}" 
+            data-lightbox="project-gallery" 
+            data-title="${img.title}"
+          >
+            <img 
+              src="${img.src}" 
+              alt="${img.title}"
+              loading="lazy"
+              onerror="this.src='https://placehold.co/600x400?text=Image+Not+Found'"
+            />
+          </a>
+        `,
+          )
+          .join("");
+
+        // Refresh lightbox for new images
+        if (typeof lightbox !== "undefined") {
+          lightbox.option({
+            resizeDuration: 200,
+            wrapAround: true,
+            albumLabel: "Image %1 of %2",
+          });
+        }
+      }
+
+      // Run when DOM is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        populateProjectGallery();
+      });
+    </script>
   </body>
 </html>

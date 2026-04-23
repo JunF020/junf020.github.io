@@ -556,11 +556,11 @@
                 <div
                   class="stat-number"
                   data-count="7"
-                  aria-label="7 countries"
+                  aria-label="East and Central Africa"
                 >
                   0
                 </div>
-                <div class="stat-label">Countries</div>
+                <div class="stat-label">East & Central African Countries</div>
               </div>
             </div>
           </div>
@@ -679,9 +679,9 @@
                 <div class="timeline-content">
                   <h4>Major Milestones</h4>
                   <p>
-                    Wema Block 1, 2, 3, 4 Completed
+                    KDB Business Complex <br>
+                    KyU Complex (I)<br>
                     Murang'a Phase 1, 2
-                    
                   </p>
                 </div>
               </div>
@@ -766,11 +766,9 @@
               <div class="service-icon" aria-hidden="true">
                 <i class="fas fa-tools"></i>
               </div>
-              <h3>Supply of Joinery Fittings and Household Equipments</h3>
+              <h3>Installation of Joinery Fittings & Household Equipments</h3>
               <p>
-                Quality supply and installation of joinery fittings, fixtures,
-                and household equipment from trusted manufacturers to
-                meet your specific requirements.
+                Professional installation of joinery fittings, fixtures, and household equipment — built to your exact specifications with quality craftsmanship.
               </p>
             </article>
           </div>
@@ -1097,7 +1095,7 @@
                     <address>
                       Milestone Building, 4th Floor<br />
                       Along Northern Bypass<br />
-                      P.O. Box 12345-00100<br />
+                      P.O. Box 7303-00300<br />
                       Nairobi, Kenya
                     </address>
                   </div>
@@ -1111,14 +1109,14 @@
                     <h4>Phone</h4>
                     <p>
                       <a
-                        href="tel:+254700123456"
-                        aria-label="Call us at +254 700 123 456"
-                        >+254 700 123 456</a
+                        href="tel:0202369401"
+                        aria-label="Call us at 02 02 369 401"
+                        >0202369401</a
                       ><br />
                       <a
-                        href="tel:+254720987654"
-                        aria-label="Call us at +254 720 987 654"
-                        >+254 720 987 654</a
+                        href="tel:0202369401"
+                        aria-label="Call us at 02 02 369 401"
+                        >0202369401</a
                       >
                     </p>
                   </div>
@@ -1132,15 +1130,10 @@
                     <h4>Email</h4>
                     <p>
                       <a
-                        href="mailto:info@corbanconstruction.com"
-                        aria-label="Email us at info@corbanconstruction.com"
-                        >info@corbanconstruction.com</a
+                        href="mailto:info@corban-construction.com"
+                        aria-label="Email us at info@corban-construction.com"
+                        >info@corban-construction.com</a
                       ><br />
-                      <a
-                        href="mailto:tenders@corbanconstruction.com"
-                        aria-label="Email tenders at tenders@corbanconstruction.com"
-                        >tenders@corbanconstruction.com</a
-                      >
                     </p>
                   </div>
                 </div>
@@ -1437,16 +1430,6 @@
                 Subscribe
               </button>
             </form>
-            <div class="download-brochure">
-              <a
-                href="downloads/corban-brochure.pdf"
-                class="btn-download"
-                download
-                aria-label="Download company brochure PDF"
-              >
-                <i class="fas fa-download" aria-hidden="true"></i> Download
-                Company Brochure
-              </a>
             </div>
           </div>
         </div>
@@ -1496,49 +1479,97 @@
         });
       }
 
-
-        // ============================================
-        // SCROLL SPY - Active nav link on scroll
-        // ============================================
-        const ScrollSpy = {
-          init: function () {
-            this.sections = document.querySelectorAll("main section[id]");
-            this.navLinks = document.querySelectorAll(".nav-list a[href^='#']");
-        
-            if (!this.sections.length || !this.navLinks.length) return;
-        
-            window.addEventListener(
-              "scroll",
-              utils.throttle(() => this.update(), 100)
-            );
-        
-            // Run once on load to set initial state
-            this.update();
-          },
-        
-          update: function () {
-            const scrollY = window.scrollY;
-            const headerOffset = 100; // A little buffer below the fixed header
-        
-            let currentSection = "";
-        
-            this.sections.forEach((section) => {
-              const sectionTop = section.offsetTop - headerOffset;
-              const sectionBottom = sectionTop + section.offsetHeight;
-        
-              if (scrollY >= sectionTop && scrollY < sectionBottom) {
-                currentSection = section.getAttribute("id");
-              }
-            });
-        
-            this.navLinks.forEach((link) => {
-              link.classList.remove("active");
-              if (link.getAttribute("href") === `#${currentSection}`) {
-                link.classList.add("active");
-              }
-            });
-          },
-        };
+      // ============================================
+      // UTILITIES - Defined outside for global access
+      // ============================================
+      const utils = {
+        debounce: function (func, wait) {
+          let timeout;
+          return function executedFunction(...args) {
+            const later = () => {
+              clearTimeout(timeout);
+              func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+          };
+        },
+      
+        throttle: function (func, limit) {
+          let inThrottle;
+          return function (...args) {
+            if (!inThrottle) {
+              func.apply(this, args);
+              inThrottle = true;
+              setTimeout(() => (inThrottle = false), limit);
+            }
+          };
+        },
+      
+        isInViewport: function (element, threshold = 0.1) {
+          const rect = element.getBoundingClientRect();
+          return (
+            rect.top <=
+              (window.innerHeight || document.documentElement.clientHeight) *
+                (1 - threshold) && rect.bottom >= 0
+          );
+        },
+      
+        sanitizeInput: function (input) {
+          const div = document.createElement("div");
+          div.textContent = input;
+          return div.innerHTML;
+        },
+      
+        validateEmail: function (email) {
+          const re =
+            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return re.test(String(email).toLowerCase());
+        },
+      };
+      
+      // ============================================
+      // SCROLL SPY - Active nav link on scroll
+      // ============================================
+      const ScrollSpy = {
+        init: function () {
+          this.sections = document.querySelectorAll("main section[id]");
+          this.navLinks = document.querySelectorAll(".nav-list a[href^='#']");
+      
+          if (!this.sections.length || !this.navLinks.length) return;
+      
+          window.addEventListener(
+            "scroll",
+            utils.throttle(() => this.update(), 100)
+          );
+      
+          // Run once on load to set initial state
+          this.update();
+        },
+      
+        update: function () {
+          const scrollY = window.scrollY;
+          const headerOffset = 100; // A little buffer below the fixed header
+      
+          let currentSection = "";
+      
+          this.sections.forEach((section) => {
+            const sectionTop = section.offsetTop - headerOffset;
+            const sectionBottom = sectionTop + section.offsetHeight;
+      
+            if (scrollY >= sectionTop && scrollY < sectionBottom) {
+              currentSection = section.getAttribute("id");
+            }
+          });
+      
+          this.navLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${currentSection}`) {
+              link.classList.add("active");
+            }
+          });
+        },
+      };
 
       document.addEventListener("DOMContentLoaded", () => {
         const expElement = document.getElementById("yearsExperience");
