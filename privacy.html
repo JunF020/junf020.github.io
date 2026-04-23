@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Privacy Policy - Corban Construction Ltd"
+    />
+    <title>Privacy Policy | Corban Construction Ltd</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="icon" type="image/x-icon" href="images/logo.ico" />
+    <style>
+      :root {
+        --primary-color: #e67e22;
+        --primary-dark: #d35400;
+        --secondary-color: #2c3e50;
+        --light-color: #f8f9fa;
+        --text-color: #333333;
+        --white: #ffffff;
+        --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Open Sans", sans-serif;
+        line-height: 1.8;
+        color: var(--text-color);
+        background-color: var(--white);
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+      }
+
+      /* Header */
+      .header {
+        background-color: var(--white);
+        box-shadow: var(--shadow);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .header .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--secondary-color);
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: 1.2rem;
+      }
+      .logo img {
+        height: 45px;
+        margin-right: 0.75rem;
+      }
+      .back-home {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: var(--primary-color);
+        color: var(--white);
+        padding: 0.6rem 1.2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: var(--transition);
+      }
+      .back-home:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+      }
+
+      /* Page Hero */
+      .page-hero {
+        background: linear-gradient(
+          135deg,
+          var(--secondary-color) 0%,
+          #1a252f 100%
+        );
+        color: var(--white);
+        padding: 4rem 0;
+        text-align: center;
+      }
+      .page-hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.75rem;
+        letter-spacing: 1px;
+      }
+      .page-hero p {
+        font-size: 1rem;
+        opacity: 0.8;
+      }
+      .page-hero .accent {
+        color: var(--primary-color);
+      }
+
+      /* Content */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      .content-wrapper {
+        max-width: 860px;
+        margin: 3rem auto;
+        padding: 0 1.5rem 4rem;
+      }
+      .last-updated {
+        display: inline-block;
+        background-color: var(--light-color);
+        border-left: 4px solid var(--primary-color);
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+        color: #666;
+        margin-bottom: 2.5rem;
+        border-radius: 0 4px 4px 0;
+      }
+      .policy-section {
+        margin-bottom: 2.5rem;
+      }
+      .policy-section h2 {
+        font-size: 1.3rem;
+        color: var(--secondary-color);
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--light-color);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .policy-section h2 i {
+        color: var(--primary-color);
+        font-size: 1rem;
+      }
+      .policy-section p {
+        margin-bottom: 0.9rem;
+        color: #555;
+      }
+      .policy-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0.75rem 0;
+      }
+      .policy-section ul li {
+        padding: 0.4rem 0 0.4rem 1.5rem;
+        position: relative;
+        color: #555;
+      }
+      .policy-section ul li::before {
+        content: "\f058";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        color: var(--primary-color);
+        font-size: 0.8rem;
+        top: 0.55rem;
+      }
+      .contact-box {
+        background: linear-gradient(135deg, var(--secondary-color), #1a252f);
+        color: var(--white);
+        border-radius: 12px;
+        padding: 2rem;
+        margin-top: 3rem;
+        text-align: center;
+      }
+      .contact-box h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+      .contact-box p {
+        opacity: 0.85;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+      }
+      .contact-box a {
+        color: var(--primary-color);
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .contact-box a:hover {
+        text-decoration: underline;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: var(--secondary-color);
+        color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+        padding: 1.5rem;
+        font-size: 0.85rem;
+      }
+      .footer a {
+        color: var(--primary-color);
+        text-decoration: none;
+        margin: 0 0.5rem;
+      }
+      .footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="images/logo.png" alt="Corban Construction Logo" />
+          CORBAN CONSTRUCTION
+        </a>
+        <a href="index.html" class="back-home">
+          <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+      </div>
+    </header>
+
+    <div class="page-hero">
+      <h1>Privacy <span class="accent">Policy</span></h1>
+      <p>How we collect, use, and protect your information</p>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="last-updated">
+        <i class="fas fa-calendar-alt"></i> &nbsp;Last updated: April 23, 2026
+      </div>
+
+      <div class="policy-section">
+        <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+        <p>
+          Corban Construction Ltd ("we", "our", or "us") is committed to
+          protecting your personal information. This Privacy Policy explains how
+          we collect, use, and safeguard information when you visit our website
+          or contact us regarding our services.
+        </p>
+        <p>
+          By using our website, you agree to the collection and use of
+          information in accordance with this policy.
+        </p>
+      </div>
+
+      <div class="policy-section">
+        <h2><i class="fas fa-database"></i> Information We Collect</h2>
+        <p>We may collect the following types of information:</p>
+        <ul>
+          <li>
+            Your name, email address, and phone number when you contact us via
+            our contact form
+          </li>
+          <li>The subject and content of messages you send us</li>
+          <li>
+            Technical data such as your browser type and IP address (collected
+            automatically)
+          </li>
+          <li>Information you provide when subscribing to our newsletter</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2><i class="fas fa-cogs"></i> How We Use Your Information</h2>
+        <p>We use the information we collect to:</p>
+        <ul>
+          <li>Respond to your enquiries and project requests</li>
+          <li>Send you company news and updates if you have subscribed</li>
+          <li>Improve our website and services</li>
+          <li>Comply with legal obligations</li>
+        </ul>
+        <p>
+          We do not sell, trade, or rent your personal information to third
+          parties.
+        </p>
+      </div>
+
+      <div class="policy-section">
+        <h2><i class="fas fa-shield-alt"></i> Data Security</h2>
+        <p>
+          We take reasonable precautions to protect your information. Our
+          website uses HTTPS encryption, and messages sent via our contact form
+          are transmitted securely through EmailJS. However, no method of
+          internet transmission is 100% secure.
+        </p>
+      </div>
+
+      <div class="policy-section">
+        <h2><i class="fas fa-cookie-bite"></i> Cookies</h2>
+        <p>
+          Our website may use basic cookies to improve your browsing experience.
+          These cookies do not store personally identifiable information. You
+          can instruct your browser to refuse all cookies or to indicate when a
+          cookie is being sent.
+        </p>
+      </div>
+
+      <div class="policy-section">
+        <h2><i class="fas fa-link"></i> Third-Party Services</h2>
+        <p>
+          Our website uses the following third-party services which may collect
+          data independently:
+        </p>
+        <ul>
+          <li>Google Maps (for displaying our office location)</li>
+          <li>Google Analytics (for understanding website traffic)</li>
+          <li>EmailJS (for processing contact form submissions)</li>
+          <li>Google Fonts and Font Awesome (for typography and icons)</li>
+        </ul>
+        <p>
+          Each of these services has its own privacy policy governing how they
+          handle data.
+        </p>
+      </div>
+
+      <div class="policy-section">
+        <h2><i class="fas fa-user-check"></i> Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+          <li>Request access to the personal data we hold about you</li>
+          <li>Request correction or deletion of your personal data</li>
+          <li>Opt out of any marketing communications at any time</li>
+        </ul>
+        <p>
+          To exercise any of these rights, please contact us using the details
+          below.
+        </p>
+      </div>
+
+      <div class="policy-section">
+        <h2><i class="fas fa-edit"></i> Changes to This Policy</h2>
+        <p>
+          We may update this Privacy Policy from time to time. Any changes will
+          be posted on this page with an updated date. We encourage you to
+          review this page periodically.
+        </p>
+      </div>
+
+      <div class="contact-box">
+        <h3>Questions about this policy?</h3>
+        <p>Reach out to us and we'll be happy to help.</p>
+        <p>
+          <i class="fas fa-envelope"></i> &nbsp;
+          <a href="mailto:info@corbanconstruction.com"
+            >info@corbanconstruction.com</a
+          >
+        </p>
+        <p style="margin-top: 1rem">
+          <a
+            href="index.html#contact"
+            style="
+              background: var(--primary-color);
+              color: #fff;
+              padding: 0.6rem 1.4rem;
+              border-radius: 50px;
+              font-family: Montserrat, sans-serif;
+              font-weight: 600;
+              font-size: 0.85rem;
+              text-decoration: none;
+            "
+          >
+            <i class="fas fa-paper-plane"></i> &nbsp;Contact Us
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>
+        &copy; 2026 Corban Construction Ltd. All Rights Reserved. &nbsp;|&nbsp;
+        <a href="index.html">Home</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="sitemap.html">Sitemap</a>
+      </p>
+    </footer>
+  </body>
+</html>

@@ -224,12 +224,12 @@ const galleryImages = [
     title: "Mombasa Project",
   },
   {
-    src: "images/murang'a_phase_1.jpeg",
+    src: "images/muranga_phase_1.jpeg",
     category: "projects",
     title: "Murang'a Project - Phase 1",
   },
   {
-    src: "images/murang'a_phase_2.jpeg",
+    src: "images/muranga_phase_2.jpeg",
     category: "projects",
     title: "Murang'a Project - Phase 2",
   },

@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sitemap - Corban Construction Ltd" />
+    <title>Sitemap | Corban Construction Ltd</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="icon" type="image/x-icon" href="images/logo.ico" />
+    <style>
+      :root {
+        --primary-color: #e67e22;
+        --primary-dark: #d35400;
+        --secondary-color: #2c3e50;
+        --light-color: #f8f9fa;
+        --text-color: #333333;
+        --white: #ffffff;
+        --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Open Sans", sans-serif;
+        line-height: 1.8;
+        color: var(--text-color);
+        background-color: var(--white);
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+      }
+
+      .header {
+        background-color: var(--white);
+        box-shadow: var(--shadow);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .header .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--secondary-color);
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: 1.2rem;
+      }
+      .logo img {
+        height: 45px;
+        margin-right: 0.75rem;
+      }
+      .back-home {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: var(--primary-color);
+        color: var(--white);
+        padding: 0.6rem 1.2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: var(--transition);
+      }
+      .back-home:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+      }
+
+      .page-hero {
+        background: linear-gradient(
+          135deg,
+          var(--secondary-color) 0%,
+          #1a252f 100%
+        );
+        color: var(--white);
+        padding: 4rem 0;
+        text-align: center;
+      }
+      .page-hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.75rem;
+        letter-spacing: 1px;
+      }
+      .page-hero p {
+        font-size: 1rem;
+        opacity: 0.8;
+      }
+      .page-hero .accent {
+        color: var(--primary-color);
+      }
+
+      .content-wrapper {
+        max-width: 900px;
+        margin: 3rem auto;
+        padding: 0 1.5rem 4rem;
+      }
+      .sitemap-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 2rem;
+        margin-top: 1rem;
+      }
+      .sitemap-group {
+        background: var(--light-color);
+        border-radius: 12px;
+        padding: 1.75rem;
+        border-top: 4px solid var(--primary-color);
+        transition: var(--transition);
+      }
+      .sitemap-group:hover {
+        box-shadow: var(--shadow);
+        transform: translateY(-3px);
+      }
+      .sitemap-group h2 {
+        font-size: 1rem;
+        color: var(--secondary-color);
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .sitemap-group h2 i {
+        color: var(--primary-color);
+      }
+      .sitemap-group ul {
+        list-style: none;
+        padding: 0;
+      }
+      .sitemap-group ul li {
+        margin-bottom: 0.6rem;
+      }
+      .sitemap-group ul li a {
+        color: #555;
+        text-decoration: none;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: var(--transition);
+        padding: 0.2rem 0;
+      }
+      .sitemap-group ul li a i {
+        color: var(--primary-color);
+        font-size: 0.75rem;
+        width: 14px;
+      }
+      .sitemap-group ul li a:hover {
+        color: var(--primary-color);
+        padding-left: 4px;
+      }
+
+      .footer {
+        background-color: var(--secondary-color);
+        color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+        padding: 1.5rem;
+        font-size: 0.85rem;
+      }
+      .footer a {
+        color: var(--primary-color);
+        text-decoration: none;
+        margin: 0 0.5rem;
+      }
+      .footer a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 600px) {
+        .page-hero h1 {
+          font-size: 1.8rem;
+        }
+        .sitemap-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div
+        class="header container"
+        style="
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 1.5rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <a href="index.html" class="logo">
+          <img src="images/logo.png" alt="Corban Construction Logo" />
+          CORBAN CONSTRUCTION
+        </a>
+        <a href="index.html" class="back-home">
+          <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+      </div>
+    </header>
+
+    <div class="page-hero">
+      <h1>Site<span class="accent">map</span></h1>
+      <p>A complete overview of all pages on our website</p>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="sitemap-grid">
+        <div class="sitemap-group">
+          <h2><i class="fas fa-home"></i> Main Pages</h2>
+          <ul>
+            <li>
+              <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+            </li>
+            <li>
+              <a href="index.html#about"
+                ><i class="fas fa-chevron-right"></i> About Us</a
+              >
+            </li>
+            <li>
+              <a href="index.html#services"
+                ><i class="fas fa-chevron-right"></i> Services</a
+              >
+            </li>
+            <li>
+              <a href="index.html#projects"
+                ><i class="fas fa-chevron-right"></i> Projects</a
+              >
+            </li>
+            <li>
+              <a href="index.html#gallery"
+                ><i class="fas fa-chevron-right"></i> Gallery</a
+              >
+            </li>
+            <li>
+              <a href="index.html#careers"
+                ><i class="fas fa-chevron-right"></i> Careers</a
+              >
+            </li>
+            <li>
+              <a href="index.html#contact"
+                ><i class="fas fa-chevron-right"></i> Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="sitemap-group">
+          <h2><i class="fas fa-hard-hat"></i> Services</h2>
+          <ul>
+            <li>
+              <a href="index.html#services"
+                ><i class="fas fa-chevron-right"></i> Building Construction</a
+              >
+            </li>
+            <li>
+              <a href="index.html#services"
+                ><i class="fas fa-chevron-right"></i> Road Construction</a
+              >
+            </li>
+            <li>
+              <a href="index.html#services"
+                ><i class="fas fa-chevron-right"></i> Pavement &amp;
+                Surfacing</a
+              >
+            </li>
+            <li>
+              <a href="index.html#services"
+                ><i class="fas fa-chevron-right"></i> Partitioning &amp;
+                Joinery</a
+              >
+            </li>
+            <li>
+              <a href="index.html#services"
+                ><i class="fas fa-chevron-right"></i> General Renovations</a
+              >
+            </li>
+            <li>
+              <a href="index.html#services"
+                ><i class="fas fa-chevron-right"></i> Supply of Fittings</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="sitemap-group">
+          <h2><i class="fas fa-folder-open"></i> Other Pages</h2>
+          <ul>
+            <li>
+              <a href="projects.html"
+                ><i class="fas fa-chevron-right"></i> All Projects</a
+              >
+            </li>
+            <li>
+              <a href="privacy.html"
+                ><i class="fas fa-chevron-right"></i> Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a href="terms.html"
+                ><i class="fas fa-chevron-right"></i> Terms of Service</a
+              >
+            </li>
+            <li>
+              <a href="sitemap.html"
+                ><i class="fas fa-chevron-right"></i> Sitemap</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="sitemap-group">
+          <h2><i class="fas fa-phone"></i> Get in Touch</h2>
+          <ul>
+            <li>
+              <a href="index.html#contact"
+                ><i class="fas fa-chevron-right"></i> Contact Form</a
+              >
+            </li>
+            <li>
+              <a href="mailto:info@corbanconstruction.com"
+                ><i class="fas fa-chevron-right"></i>
+                info@corbanconstruction.com</a
+              >
+            </li>
+            <li>
+              <a href="mailto:tenders@corbanconstruction.com"
+                ><i class="fas fa-chevron-right"></i>
+                tenders@corbanconstruction.com</a
+              >
+            </li>
+            <li>
+              <a href="index.html#careers"
+                ><i class="fas fa-chevron-right"></i> Career Opportunities</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>
+        &copy; 2026 Corban Construction Ltd. All Rights Reserved. &nbsp;|&nbsp;
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </p>
+    </footer>
+  </body>
+</html>
