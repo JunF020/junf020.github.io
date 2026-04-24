@@ -432,6 +432,57 @@ const EnhancedCarousel = {
   };
 
   // ============================================
+  // IMAGE MODAL
+  // ============================================
+
+  const ImageModal = {
+    init: function () {
+      this.modal = document.getElementById("imageModal");
+      this.image = document.getElementById("modalImage");
+      this.title = document.getElementById("modalTitle");
+      this.description = document.getElementById("modalDescription");
+      this.location = document.getElementById("modalLocation");
+      this.closeBtn = document.getElementById("modalClose");
+      this.backdrop = this.modal?.querySelector(".modal-backdrop");
+
+      if (!this.modal) return;
+
+      // Close on X button
+      this.closeBtn.addEventListener("click", () => this.close());
+
+      // Close on backdrop click (anywhere outside the image)
+      this.backdrop.addEventListener("click", () => this.close());
+
+      // Close on Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") this.close();
+      });
+    },
+
+    open: function ({ src, title = "", description = "", location = "" }) {
+      this.image.src = src;
+      this.image.alt = title;
+      this.title.textContent = title;
+      this.description.textContent = description;
+      this.location.innerHTML = location
+        ? `<i class="fas fa-map-marker-alt"></i> ${location}`
+        : "";
+
+      this.modal.classList.add("open");
+      document.body.style.overflow = "hidden"; // prevent background scroll
+    },
+
+    close: function () {
+      this.modal.classList.remove("open");
+      document.body.style.overflow = "";
+      // Clear src after animation so there's no flash on next open
+      setTimeout(() => {
+        this.image.src = "";
+      }, 250);
+    },
+  };
+
+  // ============================================
   // GALLERY CAROUSEL - Moved inside IIFE but before initialization
   // ============================================
 
@@ -450,7 +501,6 @@ const EnhancedCarousel = {
     }
 
     populateCarousels() {
-      // Group images by category
       const categories = {
         all: this.images,
         construction: this.images.filter(
@@ -466,14 +516,25 @@ const EnhancedCarousel = {
         renovation: this.images.filter((img) => img.category === "renovation"),
       };
 
-      // Populate each carousel
       for (const [category, images] of Object.entries(categories)) {
         const track = document.getElementById(`carousel-${category}`);
-        if (track) {
-          track.innerHTML = images
-            .map((img) => this.createGalleryItem(img))
-            .join("");
-        }
+        if (!track) continue; // ← also safer than just checking if (track)
+
+        track.innerHTML = images
+          .map((img) => this.createGalleryItem(img))
+          .join("");
+
+        // Attach modal clicks while track is still in scope
+        track.querySelectorAll(".gallery-item").forEach((item) => {
+          const img = item.querySelector("img");
+          item.style.cursor = "pointer";
+          item.addEventListener("click", () => {
+            ImageModal.open({
+              src: img.src,
+              title: img.alt,
+            });
+          });
+        });
       }
     }
 
@@ -1093,10 +1154,12 @@ const EnhancedCarousel = {
     },
 
     openProjectModal: function (project) {
-      // Simple alert for now - can be replaced with a proper modal
-      alert(
-        `${project.title}\n\n${project.description}\nLocation: ${project.location}`,
-      );
+      ImageModal.open({
+        src: project.image,
+        title: project.title,
+        description: project.description,
+        location: project.location,
+      });
     },
   };
 
@@ -1140,24 +1203,41 @@ const EnhancedCarousel = {
 
       this.galleryGrid.innerHTML = filtered
         .map(
-          (img, index) => `
-                <a href="${img.src}" 
-                   data-lightbox="gallery" 
-                   data-title="${img.title}"
-                   class="gallery-item"
-                   data-category="${img.category}">
-                    <img src="${img.src}" 
-                         alt="${img.title}" 
-                         loading="lazy">
-                    <div class="gallery-overlay">
-                        <div class="gallery-icon">
-                            <i class="fas fa-expand"></i>
-                        </div>
-                    </div>
-                </a>
-            `,
+          (img) => `
+        <div class="gallery-item"
+             data-category="${img.category}"
+             data-src="${img.src}"
+             data-title="${img.title}"
+             data-description="${img.description || ""}"
+             role="button"
+             tabindex="0"
+             aria-label="View ${img.title}">
+          <img src="${img.src}" alt="${img.title}" loading="lazy">
+          <div class="gallery-overlay">
+            <div class="gallery-icon">
+              <i class="fas fa-expand"></i>
+            </div>
+          </div>
+        </div>
+      `,
         )
         .join("");
+
+      // Attach click handlers
+      this.galleryGrid.querySelectorAll(".gallery-item").forEach((item) => {
+        item.addEventListener("click", () => {
+          ImageModal.open({
+            src: item.dataset.src,
+            title: item.dataset.title,
+            description: item.dataset.description,
+          });
+        });
+
+        // Keyboard accessibility
+        item.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") item.click();
+        });
+      });
     },
   };
 
@@ -1581,6 +1661,7 @@ const EnhancedCarousel = {
       Gallery.init();
     }
 
+    ImageModal.init();
     JobsListing.init();
     ContactForm.init();
     BackToTop.init();
